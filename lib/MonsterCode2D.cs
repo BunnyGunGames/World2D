@@ -7,6 +7,7 @@ public class MonsterCode2D : MonoBehaviour {
 
 
   void OnTriggerEnter2D(Collider2D c){
+    print("fired on monster code");
     if (c.gameObject.layer == LayerMask.NameToLayer("PlayerDamage")){
       float wepDamage = c.gameObject.GetComponent<WeaponCode2D>().GetDamage();
       float wepForce = c.gameObject.GetComponent<WeaponCode2D>().GetForce();
@@ -23,7 +24,13 @@ public class MonsterCode2D : MonoBehaviour {
     //need to get the collision direction to direct force...
     GetComponent<Rigidbody2D>().AddForce(Vector2.right * force * forceDirection);
     if(hp < 1) {
-      Destroy(gameObject);
+      DestroyMonster();
     }  
+  }
+
+  public virtual void DestroyMonster() {
+   print("destroyed from MonsterCode2D");
+    Destroy(gameObject);
+    
   }
 }

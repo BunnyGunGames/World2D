@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Goomba : MonoBehaviour {
+public class Goomba : MonsterCode2D {
 
   [SerializeField]
   public int levelLayerNumber;
@@ -16,7 +16,8 @@ public class Goomba : MonoBehaviour {
   }
 
   void OnCollisionEnter2D(Collision2D c) {
-    if(c.gameObject.layer == levelLayerNumber) {
+    print("fired from goomva");
+    if (c.gameObject.layer == levelLayerNumber) {
       Vector3 normal = c.contacts[0].normal;
 
       if (normal == Vector3.right)
@@ -37,5 +38,9 @@ public class Goomba : MonoBehaviour {
     rb2d.velocity = facingLeft ?
       new Vector2(-1 * 2, rb2dy) :
       new Vector2(1 * 2, rb2dy);
+  }
+  public override void DestroyMonster() {
+    print("destroyed from Goomba.cs");
+    base.DestroyMonster();
   }
 }
