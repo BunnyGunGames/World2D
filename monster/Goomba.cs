@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Goomba : MonoBehaviour {
 
-  [SerializeField]
   public int levelLayerNumber;
 
   Rigidbody2D rb2d;
