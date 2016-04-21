@@ -10,14 +10,17 @@ namespace BunnyGun {
 
 
     void OnTriggerEnter2D(Collider2D c){
-      bool layerCheck = World2D.world2D.LayerMaskIntMatch(World2D.world2D.playerDamage, c.gameObject.layer);
+      Lib2D.TriggerDirectionLeft2D(gameObject, c);
+      bool layerCheck = Lib2D.LayerMaskIntMatch(World2D.world2D.playerDamage, c.gameObject.layer);
       if (layerCheck){
         float wepDamage = c.gameObject.GetComponent<WeaponCode2D>().GetDamage();
         float wepForce = c.gameObject.GetComponent<WeaponCode2D>().GetForce();
 
         //refactor this out and use the direction testing from goomba.cs
-        float wepForceDirection = c.gameObject.transform.parent.gameObject.GetComponent<PlayerCode2D>().m_FacingRight;
-    
+
+        float wepForceDirection = Lib2D.TriggerDirectionLeft2D(gameObject, c) ? -1 : 1;
+        //float wepForceDirection = c.gameObject.transform.parent.gameObject.GetComponent<PlayerCode2D>().m_FacingRight;
+
         TakeDamage(wepDamage, wepForce, wepForceDirection);
       }
     }

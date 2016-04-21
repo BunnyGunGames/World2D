@@ -14,10 +14,11 @@ namespace BunnyGun {
     }
 
     void OnCollisionEnter2D(Collision2D c) {
-    
-      bool layerCheck = World2D.world2D.LayerMaskIntMatch(World2D.world2D.level, c.gameObject.layer);
-      if (layerCheck) { 
-        string collisionDirection2D = CollisionDirection2D(c);
+
+      bool layerCheckLevel = Lib2D.LayerMaskIntMatch(World2D.world2D.level, c.gameObject.layer);
+      
+      if (layerCheckLevel) { 
+        string collisionDirection2D = Lib2D.CollisionDirection2D(c);
         switch (collisionDirection2D) {
           case "left":  facingLeft = true;  break;
           case "right": facingLeft = false; break;
@@ -25,21 +26,7 @@ namespace BunnyGun {
         }
       }
     }
-    string CollisionDirection2D(Collision2D c) {
-        Vector3 normal = c.contacts[0].normal;
-
-        if (normal == Vector3.right)
-          return "right";
-        if (normal == Vector3.left)
-          return "left";  
-        if (normal == Vector3.up)
-          return "bottom";
-        if (normal == Vector3.down)
-          return "top";
-
-      return "unknown";
-        
-    }
+    
     void FixedUpdate () {
       float rb2dy = rb2d.velocity.y;
 
