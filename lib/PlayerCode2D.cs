@@ -14,21 +14,20 @@ namespace BunnyGun {
     Animator animator;
     Rigidbody2D rb2d;
 
-    [SerializeField]
-    private LayerMask m_WhatIsGround;   // A mask determining what is ground to the character
+    
+    private LayerMask m_WhatIsGround;   
 
     private Transform m_GroundCheck;
     const float k_GroundedRadius = .2f;
     private bool m_Grounded;
 
     void Awake(){
-    
       animator = GetComponent<Animator>();
       rb2d = GetComponent<Rigidbody2D>();
       m_GroundCheck = transform.Find("GroundCheck");
       m_WhatIsGround = World2D.world2D.level;
-
     }
+    
     void Update () {
       CheckIfGrounded();
       HandlePlayerMovement();  

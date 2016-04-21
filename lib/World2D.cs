@@ -27,7 +27,9 @@ namespace BunnyGun {
     public bool LayerMaskIntMatch(LayerMask layerMask, int i) {
       return layerMask >> i == 1 ? true : false;
     }
-
+    public void Foo() {
+      print("fired fpoo");
+    }
 
   }  
 }
