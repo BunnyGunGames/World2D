@@ -9,9 +9,10 @@ namespace BunnyGun {
     public static World2D world2D;
 
     [Header("Layer settings")]
-    [SerializeField] public LayerMask level;
-    [SerializeField] public LayerMask player;
-    [SerializeField] public LayerMask playerDamage;
+    public int layerLevel;
+    public int layerPlayer;
+    public int layerPlayerDamage;
+    public int layerMonster;
 
     //[Space(20)]
     void Awake() {

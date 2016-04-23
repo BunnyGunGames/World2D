@@ -7,11 +7,12 @@ namespace BunnyGun {
   public class MonsterCode2D : MonoBehaviour {
 
     public float hp;
-
+    void Awake() {
+      
+    }
 
     void OnTriggerEnter2D(Collider2D c){
-
-      bool layerCheck = Lib2D.LayerMaskIntMatch(World2D.world2D.playerDamage, c.gameObject.layer);
+      bool layerCheck = c.gameObject.layer == World2D.world2D.layerPlayerDamage;
       if (layerCheck){
         float wepDamage = c.gameObject.GetComponent<WeaponCode2D>().GetDamage();
         float wepForce = c.gameObject.GetComponent<WeaponCode2D>().GetForce();

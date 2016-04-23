@@ -23,9 +23,9 @@ namespace BunnyGun {
       Vector3 normal = c.contacts[0].normal;
 
       if (normal == Vector3.right)
-        return "right";
-      if (normal == Vector3.left)
         return "left";
+      if (normal == Vector3.left)
+        return "right";
       if (normal == Vector3.up)
         return "bottom";
       if (normal == Vector3.down)

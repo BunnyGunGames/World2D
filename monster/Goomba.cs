@@ -11,14 +11,17 @@ namespace BunnyGun {
 
     void Awake() {
       rb2d = GetComponent<Rigidbody2D>();
+      gameObject.layer = World2D.world2D.layerMonster;
+
     }
 
     void OnCollisionEnter2D(Collision2D c) {
 
-      bool layerCheckLevel = Lib2D.LayerMaskIntMatch(World2D.world2D.level, c.gameObject.layer);
+      bool layerCheckLevel   = World2D.world2D.layerLevel == c.gameObject.layer;
+      bool checkMonsterLayer = World2D.world2D.layerMonster == c.gameObject.layer;
       
-      if (layerCheckLevel) { 
-        string collisionDirection2D = Lib2D.CollisionDirection2D(c);
+      if (layerCheckLevel || checkMonsterLayer){ 
+        string collisionDirection2D = Lib2D.CollisionDirection2D(c);      
         switch (collisionDirection2D) {
           case "left":  facingLeft = true;  break;
           case "right": facingLeft = false; break;
@@ -31,8 +34,8 @@ namespace BunnyGun {
       float rb2dy = rb2d.velocity.y;
 
       rb2d.velocity = facingLeft ?
-        new Vector2(-1 * 2, rb2dy) :
-        new Vector2(1 * 2, rb2dy);
+        new Vector2(1 * 2, rb2dy) :
+        new Vector2(-1 * 2, rb2dy);
     }
     public override void DestroyMonster() {
       base.DestroyMonster();

@@ -15,7 +15,7 @@ namespace BunnyGun {
     Rigidbody2D rb2d;
 
     
-    private LayerMask m_WhatIsGround;   
+    int layerLevelInt;   
 
     private Transform m_GroundCheck;
     const float k_GroundedRadius = .2f;
@@ -25,7 +25,7 @@ namespace BunnyGun {
       animator = GetComponent<Animator>();
       rb2d = GetComponent<Rigidbody2D>();
       m_GroundCheck = transform.Find("GroundCheck");
-      m_WhatIsGround = World2D.world2D.level;
+      layerLevelInt = World2D.world2D.layerLevel;
     }
     
     void Update () {
@@ -37,7 +37,7 @@ namespace BunnyGun {
     void CheckIfGrounded() {
       m_Grounded = false;
 
-      Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
+      Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, 1 << layerLevelInt);
       for (int i = 0; i < colliders.Length; i++)
       {
         if (colliders[i].gameObject != gameObject)
